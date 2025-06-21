@@ -12,6 +12,7 @@ A Laravel-based web application for managing training courses, including creatio
 - Schedule training with start and end dates
 - Assign pricing and additional notes
 - File/image upload support
+- This project includes an AJAX-powered student search feature that allows users to search students in real-time without reloading the page.
 - Responsive frontend (Blade templates with optional admin theme)
 
 ## Requirements
