@@ -24,6 +24,8 @@ Route:: post('store_student',[StudentController::class,'store'])->name('student.
 Route:: get('edit_student/{id}',[StudentController::class,'edit'])->name('student.edit');
 Route:: PUT('update_student/{id}',[StudentController::class,'update'])->name('student.update');
 Route:: get('delete_student/{id}',[StudentController::class,'destroy'])->name('student.destroy');
+Route:: post('ajax_search_student',[StudentController::class,'ajax_search_student'])->name('student.ajax_search_student');
+
 
 
 Route:: get('traningCourses',[TraningCoursesController::class,'index'])->name('traningCourses.index');

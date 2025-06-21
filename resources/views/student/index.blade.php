@@ -27,7 +27,7 @@ students
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                   <input type="text" name="searchByName" id="searchByName" class="form-control float-right" placeholder="Search By Name">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -37,7 +37,7 @@ students
               </div>
               <!-- /.card-header -->
                @if(@isset($data) and !@empty($data) and @count($data)>0)
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0" style="height: 300px;" id="ajax_response_div">
 
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -81,5 +81,34 @@ students
             <!-- /.card -->
           </div>
 
+
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        $(document).on('input',"#searchByName",function(){
+            var name = $(this).val();
+            jQuery.ajax({
+                url:'{{route('student.ajax_search_student')}}',
+                type:'POST',
+                dataType:'html',
+                cache:false,
+                data:{
+                    "_token": '{{csrf_token()}}',
+                    name:name
+                },
+                success: function(data) {
+                    // Handle success
+                    $("#ajax_response_div").html(data);
+                },
+                error: function(xhr) {
+                    // Handle error
+                    console.error(xhr);
+                }
+            });
+        })
+    })
+</script>
 
 @endsection
